@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Set"
+        android:textSize="30dp"
+        android:id="@+id/tvNewSetNumber" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="weight"
+        android:id="@+id/tvNewWeight"
+        android:textSize="20dp"
+        android:layout_below="@+id/tvNewSetNumber"
+        android:layout_toLeftOf="@+id/etNewWeight"
+        android:layout_toStartOf="@+id/etNewWeight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reps"
+        android:id="@+id/tvNewReps"
+        android:textSize="20dp"
+        android:layout_below="@+id/tvNewWeight"
+        android:layout_toLeftOf="@+id/etNewWeight"
+        android:layout_toStartOf="@+id/etNewWeight" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="3"
+        android:id="@+id/etNewWeight"
+        android:layout_alignBottom="@+id/tvNewWeight"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="3"
+        android:id="@+id/etNewReps"
+        android:layout_alignBottom="@+id/tvNewReps"
+        android:layout_toRightOf="@+id/tvNewReps"
+        android:layout_toEndOf="@+id/tvNewReps"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Complete"
+        android:id="@+id/btnCompleteSet"
+        android:layout_below="@+id/etNewReps"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
