@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -134,19 +135,20 @@ public class WorkoutListAdapter extends BaseExpandableListAdapter {
     public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (childPosition == getChildrenCount(groupPosition) - 1) { //if last child
+        if (childPosition == getChildrenCount(groupPosition) - 1) { //layout for new set
             if(convertView == null) {
                 convertView = inflater.inflate(R.layout.new_exercise_set_row, parent, false);
             } else if(convertView.findViewById(R.id.btnCompleteSet) == null) {
                 convertView = inflater.inflate(R.layout.new_exercise_set_row, parent, false);
             }
             final EditText weight = (EditText) convertView.findViewById(R.id.etNewWeight);
+            final RadioButton kg = (RadioButton) convertView.findViewById(R.id.rbKg);
             final EditText reps = (EditText) convertView.findViewById(R.id.etNewReps);
             Button completeSet = (Button) convertView.findViewById(R.id.btnCompleteSet);
             completeSet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addSet(groupPosition, new Set(Integer.parseInt(weight.getText().toString()), Integer.parseInt(reps.getText().toString())));
+                    addSet(groupPosition, new Set((kg.isChecked() ? 2.2046 : 1) * Double.parseDouble(weight.getText().toString()), Integer.parseInt(reps.getText().toString())));
                 }
             });
         } else {

@@ -33,7 +33,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="3"
         android:id="@+id/etNewWeight"
         android:layout_alignBottom="@+id/tvNewWeight"
@@ -42,7 +42,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="3"
         android:id="@+id/etNewReps"
         android:layout_alignBottom="@+id/tvNewReps"
@@ -56,6 +56,28 @@
         android:id="@+id/btnCompleteSet"
         android:layout_below="@+id/etNewReps"
         android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewWeight"
+        android:layout_toRightOf="@+id/etNewWeight"
+        android:layout_toEndOf="@+id/etNewWeight"
+        android:orientation="horizontal">
+        
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lbs"
+            android:id="@+id/rbLbs"
+            android:checked="true"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:id="@+id/rbKg"/>
+    </RadioGroup>
 
 
 </RelativeLayout>

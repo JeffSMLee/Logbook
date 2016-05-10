@@ -5,15 +5,15 @@ package com.jeffrey.logbook;
  */
 public class Set {
 
-    private int weight;
+    private double weight;
     private int reps;
 
-    public Set(int weight, int reps) {
+    public Set(double weight, int reps) {
         this.weight = weight;
         this.reps = reps;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 

@@ -27,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SETS_HEADER_REPS = "Reps";
     public static final String CREATE_ENTRIES_SETS = "CREATE TABLE " + SETS_TABLE_NAME + "( "
             + SETS_HEADER_ID + " INTEGER PRIMARY KEY, "
-            + SETS_HEADER_WEIGHT + " INTEGER, "
+            + SETS_HEADER_WEIGHT + " REAL, "
             + SETS_HEADER_REPS + " INTEGER, "
             + WORKOUTS_HEADER_ID + " INTEGER, "
             + "FOREIGN KEY(" + WORKOUTS_HEADER_ID + ") REFERENCES " + WORKOUTS_TABLE_NAME + "(" + WORKOUTS_HEADER_ID + "));";

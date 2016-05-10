@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:text="ExerciseName"
         android:textSize="30dp"
-        
         android:id="@+id/tvExerciseName"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/btnDeleteExercise"
