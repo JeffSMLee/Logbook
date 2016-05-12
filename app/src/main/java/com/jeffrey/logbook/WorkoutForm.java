@@ -55,9 +55,9 @@ public class WorkoutForm extends AppCompatActivity {
 
         Intent intent = getIntent();
         date = intent.getStringExtra("date");
-
-
+        
         exerciseList = (ExpandableListView) findViewById(R.id.lvExercises);
+        exerciseList.setDescendantFocusability(ExpandableListView.FOCUS_AFTER_DESCENDANTS);
 
         ArrayList<String> exercises = new ArrayList<String>();
         sets = new HashMap<>();
