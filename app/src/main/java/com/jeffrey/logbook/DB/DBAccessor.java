@@ -18,8 +18,11 @@ public class DBAccessor {
 
     private DBHelper helper;
 
+    private Context c;
+
     public DBAccessor(Context c) {
         helper = new DBHelper(c);
+        this.c = c;
     }
 
     public void finishWorkout(HashMap<String, List<Set>> map, String date) {
@@ -128,6 +131,21 @@ public class DBAccessor {
             }
         }
         db.close();
+    }
+
+    public String[] retrieveHistoricExercises() {
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(true, helper.WORKOUTS_TABLE_NAME, new String[]{helper.WORKOUTS_HEADER_NAME}, null, null, null, null, null, null);
+        if(c.getCount() == 0)
+            return new String[] {};
+        String[] names  = new String[c.getCount()];
+        c.moveToFirst();
+        for(int i = 0; i < c.getCount(); i++) {
+            names[i] = c.getString(c.getColumnIndex(helper.WORKOUTS_HEADER_NAME));
+            c.moveToNext();
+        }
+        return names;
     }
 
 }

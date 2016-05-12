@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
@@ -55,7 +56,7 @@ public class WorkoutForm extends AppCompatActivity {
 
         Intent intent = getIntent();
         date = intent.getStringExtra("date");
-        
+
         exerciseList = (ExpandableListView) findViewById(R.id.lvExercises);
         exerciseList.setDescendantFocusability(ExpandableListView.FOCUS_AFTER_DESCENDANTS);
 
@@ -68,7 +69,9 @@ public class WorkoutForm extends AppCompatActivity {
         exerciseList.setAdapter(exerciseAdapter);
 
 
-        final EditText newExerciseName = (EditText) findViewById(R.id.etExerciseName);
+        final AutoCompleteTextView newExerciseName = (AutoCompleteTextView) findViewById(R.id.etExerciseName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, dbAccessor.retrieveHistoricExercises());
+        newExerciseName.setAdapter(adapter);
         Button addExerciseButton = (Button) findViewById(R.id.btnAddExercise);
         addExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
