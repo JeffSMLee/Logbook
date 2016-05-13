@@ -11,31 +11,69 @@
 
     <ExpandableListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/lvExercises"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnAddExercise" />
+        android:layout_above="@+id/layoutNewExerciseContainer"/>
 
-    <Button
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD"
-        android:id="@+id/btnAddExercise"
-        android:layout_alignTop="@+id/etExerciseName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <AutoCompleteTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="New Exercise"
-        android:id="@+id/etExerciseName"
-        android:layout_alignParentBottom="true"
+        android:id="@id/layoutNewExerciseContainer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/btnAddExercise"
-        android:layout_toStartOf="@+id/btnAddExercise" />
+        android:layout_alignParentBottom="true">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rgStrengthCardioSelector"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@id/btnAddExercise">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbStrength"
+                android:text="Strength"
+                android:checked="true"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbCardio"
+                android:text="Cardio"/>
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:id="@+id/btnAddExercise"
+            android:layout_below="@id/rgStrengthCardioSelector"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="New Exercise"
+            android:id="@+id/etExerciseName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@id/btnAddExercise"
+            android:layout_toStartOf="@id/btnAddExercise"
+            android:layout_alignTop="@id/btnAddExercise"/>
+
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
