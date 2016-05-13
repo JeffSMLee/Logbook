@@ -19,14 +19,14 @@ import java.util.List;
 /**
  * Created by Jeffrey on 4/20/2016.
  */
-public class WorkoutListAdapter extends BaseExpandableListAdapter {
+public class StrengthListAdapter extends BaseExpandableListAdapter {
 
     private Context c;
     private List<String> exercises;
     private HashMap<String, List<Set>> sets;
     private ExpandableListView lv;
 
-    public WorkoutListAdapter(Context c, List<String> exercises, HashMap<String, List<Set>> sets, ExpandableListView lv) {
+    public StrengthListAdapter(Context c, List<String> exercises, HashMap<String, List<Set>> sets, ExpandableListView lv) {
         this.c = c;
         this.exercises = exercises;
         this.sets = sets;
