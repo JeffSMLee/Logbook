@@ -4,9 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.jeffrey.logbook.Set;
 
+import java.sql.SQLInput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +28,13 @@ public class DBAccessor {
     }
 
     public void finishWorkout(HashMap<String, List<Set>> map, String date) {
+        for(String name : map.keySet()) {
+            if(map.get(name).size() == 0){
+                Toast.makeText(c, "Cannot submit exercise with no completed sets", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
         SQLiteDatabase d = helper.getReadableDatabase();
 
         String[] projection = {
@@ -75,6 +84,7 @@ public class DBAccessor {
                 }
             }
         }
+        db.close();
         helper.close();
     }
 
@@ -145,7 +155,41 @@ public class DBAccessor {
             names[i] = c.getString(c.getColumnIndex(helper.WORKOUTS_HEADER_NAME));
             c.moveToNext();
         }
+        db.close();
         return names;
+    }
+
+    public String retrieveAllExercisesAsString(String delimiter) {
+        String s = "";
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(helper.WORKOUTS_TABLE_NAME, new String[]{helper.WORKOUTS_HEADER_ID, helper.WORKOUTS_HEADER_NAME, helper.WORKOUTS_HEADER_DATE}, null, null, null, null, null);
+        if(c.getCount() == 0)
+            return s;
+        c.moveToFirst();
+        for(int i = 0; i < c.getCount(); i++) {
+            s += (c.getString(c.getColumnIndex(helper.WORKOUTS_HEADER_DATE)) + delimiter + c.getString(c.getColumnIndex(helper.WORKOUTS_HEADER_NAME)) + delimiter);
+
+            Cursor d = db.query(helper.SETS_TABLE_NAME,
+                    new String[]{helper.SETS_HEADER_WEIGHT, helper.SETS_HEADER_REPS},
+                    helper.WORKOUTS_HEADER_ID + " = ?",
+                    new String[]{c.getString(c.getColumnIndex(helper.WORKOUTS_HEADER_ID))},
+                    null,
+                    null,
+                    null);
+            d.moveToFirst();
+            for(int j = 0; j < d.getCount(); j++) {
+                s += (d.getDouble(d.getColumnIndex(helper.SETS_HEADER_WEIGHT)) + delimiter + d.getInt(d.getColumnIndex(helper.SETS_HEADER_REPS)));
+                if(j != d.getCount() - 1)
+                    s += delimiter;
+                d.moveToNext();
+            }
+            s += "\n";
+            c.moveToNext();
+        }
+        db.close();
+        return s;
     }
 
 }

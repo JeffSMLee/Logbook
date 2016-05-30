@@ -33,7 +33,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         android:ems="3"
         android:id="@+id/etNewWeight"
         android:layout_alignBottom="@+id/tvNewWeight"

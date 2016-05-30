@@ -26,4 +26,5 @@
         android:onClick="confirmDate"
         android:layout_below="@+id/datePicker"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

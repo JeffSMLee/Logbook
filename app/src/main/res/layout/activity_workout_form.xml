@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:hint="New Exercise"
         android:id="@+id/etExerciseName"
+        android:inputType="textMultiLine"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
