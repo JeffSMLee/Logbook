@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "logbook.db";
 
     public static final String WORKOUTS_TABLE_NAME = "Workouts";
@@ -25,14 +25,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SETS_HEADER_ID = "S_Id";
     public static final String SETS_HEADER_WEIGHT = "Weight";
     public static final String SETS_HEADER_REPS = "Reps";
+    public static final String SETS_HEADER_TIME = "Time";
+    public static final String SETS_HEADER_DISTANCE = "Distance";
     public static final String CREATE_ENTRIES_SETS = "CREATE TABLE " + SETS_TABLE_NAME + "( "
             + SETS_HEADER_ID + " INTEGER PRIMARY KEY, "
             + SETS_HEADER_WEIGHT + " REAL, "
             + SETS_HEADER_REPS + " INTEGER, "
+            + SETS_HEADER_TIME + " TEXT, "
+            + SETS_HEADER_DISTANCE + " REAL, "
             + WORKOUTS_HEADER_ID + " INTEGER, "
             + "FOREIGN KEY(" + WORKOUTS_HEADER_ID + ") REFERENCES " + WORKOUTS_TABLE_NAME + "(" + WORKOUTS_HEADER_ID + "));";
 
-    private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + SETS_TABLE_NAME + "," + WORKOUTS_TABLE_NAME;
+    private static final String DATABASE_ADD_TIME = "ALTER TABLE " + SETS_TABLE_NAME + " ADD COLUMN " + SETS_HEADER_TIME + " TEXT;";
+    private static final String DATABASE_ADD_DISTANCE = "ALTER TABLE " + SETS_TABLE_NAME + " ADD COLUMN " + SETS_HEADER_DISTANCE + " REAL;";
 
 
     public DBHelper(Context context) {
@@ -47,7 +52,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(SQL_DELETE_ENTRIES);
-        onCreate(db);
+        if (oldVersion < 2) {
+            db.execSQL(DATABASE_ADD_TIME);
+            db.execSQL(DATABASE_ADD_DISTANCE);
+        }
     }
 }
