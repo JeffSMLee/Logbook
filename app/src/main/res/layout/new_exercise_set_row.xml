@@ -1,53 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Set"
-        android:textSize="30dp"
-        android:id="@+id/tvNewSetNumber" />
+        android:textSize="30sp"
+        android:id="@+id/tvNewSet"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!--weight wrapper-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="weight"
-        android:id="@+id/tvNewWeight"
-        android:textSize="20dp"
-        android:layout_below="@+id/tvNewSetNumber"
-        android:layout_toLeftOf="@+id/etNewWeight"
-        android:layout_toStartOf="@+id/etNewWeight" />
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:id="@+id/layoutNewWeight">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="reps"
-        android:id="@+id/tvNewReps"
-        android:textSize="20dp"
-        android:layout_below="@+id/tvNewWeight"
-        android:layout_toLeftOf="@+id/etNewWeight"
-        android:layout_toStartOf="@+id/etNewWeight" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="weight"
+            android:id="@+id/tvNewWeight"
+            android:textSize="20sp"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal|numberSigned"
-        android:ems="3"
-        android:id="@+id/etNewWeight"
-        android:layout_alignBottom="@+id/tvNewWeight"
-        android:layout_centerHorizontal="true"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal|numberSigned"
+            android:ems="5"
+            android:textSize="20sp"
+            android:id="@+id/etNewWeight"/>
 
-    <EditText
-        android:layout_width="wrap_content"
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lbs"
+                android:id="@+id/rbLbs"
+                android:checked="true"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kg"
+                android:id="@+id/rbKg"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+    <!--reps wrapper-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="3"
-        android:id="@+id/etNewReps"
-        android:layout_alignBottom="@+id/tvNewReps"
-        android:layout_toRightOf="@+id/tvNewReps"
-        android:layout_toEndOf="@+id/tvNewReps"/>
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:id="@+id/layoutNewReps">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reps"
+            android:id="@+id/tvNewReps"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="5"
+            android:textSize="20sp"
+            android:id="@+id/etNewReps"/>
+
+    </LinearLayout>
+
+
+    <!--time wrapper-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:id="@+id/layoutNewTime">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="time"
+            android:id="@+id/tvNewTime"
+            android:textSize="20sp"/>
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/npHours" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/npMinutes" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/npSeconds" />
+
+    </LinearLayout>
+
+
+    <!--distance wrapper-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:id="@+id/layoutNewDistance">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="distance"
+            android:id="@+id/tvNewDistance"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="5"
+            android:textSize="20sp"
+            android:id="@+id/etNewDistance"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mi"
+                android:id="@+id/rbMi"
+                android:checked="true"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="km"
+                android:id="@+id/rbKm"/>
+        </RadioGroup>
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -57,27 +167,4 @@
         android:layout_below="@+id/etNewReps"
         android:layout_centerHorizontal="true" />
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/etNewWeight"
-        android:layout_toRightOf="@+id/etNewWeight"
-        android:layout_toEndOf="@+id/etNewWeight"
-        android:orientation="horizontal">
-        
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lbs"
-            android:id="@+id/rbLbs"
-            android:checked="true"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="kg"
-            android:id="@+id/rbKg"/>
-    </RadioGroup>
-
-
-</RelativeLayout>
+</LinearLayout>

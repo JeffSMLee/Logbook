@@ -46,7 +46,6 @@ public class DatePicker extends AppCompatActivity {
                 DBAccessor accessor = new DBAccessor(this);
                 String state = Environment.getExternalStorageState();
                 if (Environment.MEDIA_MOUNTED.equals(state)) {
-//                    Toast.makeText(this, "storage available", Toast.LENGTH_SHORT).show();
                     String directory = "Logbook";
                     File dir = new File(Environment.getExternalStorageDirectory(), directory);
                     if (!dir.exists()) {
@@ -65,7 +64,6 @@ public class DatePicker extends AppCompatActivity {
                 } else {
                     Toast.makeText(this, "storage unavailable", Toast.LENGTH_SHORT).show();
                 }
-
             default:
                 return super.onOptionsItemSelected(item);
         }

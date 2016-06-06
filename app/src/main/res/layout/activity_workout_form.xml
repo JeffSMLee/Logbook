@@ -39,4 +39,41 @@
         android:layout_toLeftOf="@+id/btnAddExercise"
         android:layout_toStartOf="@+id/btnAddExercise" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_above="@id/etExerciseName"
+        android:layout_alignParentRight="true"
+        android:id="@+id/layoutInputCBContainer"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="weight"
+            android:id="@+id/cbWeight"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reps"
+            android:id="@+id/cbReps"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="time"
+            android:id="@+id/cbTime"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="distance"
+            android:id="@+id/cbDistance"/>
+
+    </LinearLayout>
+
+
 </RelativeLayout>

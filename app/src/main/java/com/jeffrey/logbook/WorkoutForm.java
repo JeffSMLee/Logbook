@@ -22,8 +22,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,11 +46,14 @@ public class WorkoutForm extends AppCompatActivity {
     private ExpandableListView exerciseList;
     private WorkoutListAdapter exerciseAdapter;
 
+    private LinearLayout cbLayout;
+
     private DBAccessor dbAccessor;
 
     private String date;
 
     private HashMap<String, List<Set>> sets;
+    private ArrayList<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class WorkoutForm extends AppCompatActivity {
         exerciseList = (ExpandableListView) findViewById(R.id.lvExercises);
         exerciseList.setDescendantFocusability(ExpandableListView.FOCUS_AFTER_DESCENDANTS);
 
-        ArrayList<String> exercises = new ArrayList<String>();
+        exercises = new ArrayList<>();
         sets = new HashMap<>();
 
         dbAccessor.retrieveWorkout(date, exercises, sets);
@@ -71,16 +76,44 @@ public class WorkoutForm extends AppCompatActivity {
         exerciseAdapter = new WorkoutListAdapter(this, exercises, sets, exerciseList);
         exerciseList.setAdapter(exerciseAdapter);
 
+        cbLayout = (LinearLayout) findViewById(R.id.layoutInputCBContainer);
 
         final AutoCompleteTextView newExerciseName = (AutoCompleteTextView) findViewById(R.id.etExerciseName);
+        newExerciseName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    cbLayout.setVisibility(View.VISIBLE);
+                } else {
+                    cbLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, dbAccessor.retrieveHistoricExercises());
         newExerciseName.setAdapter(adapter);
+        final CheckBox cbWeight = (CheckBox) findViewById(R.id.cbWeight);
+        final CheckBox cbReps = (CheckBox) findViewById(R.id.cbReps);
+        final CheckBox cbTime = (CheckBox) findViewById(R.id.cbTime);
+        final CheckBox cbDistance = (CheckBox) findViewById(R.id.cbDistance);
         Button addExerciseButton = (Button) findViewById(R.id.btnAddExercise);
         addExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String exerciseName = newExerciseName.getText().toString();
-                exerciseAdapter.addExercise(exerciseName);
+                List<Exercise.Input> inputs = new ArrayList<Exercise.Input>();
+                if(cbWeight.isChecked())
+                    inputs.add(Exercise.Input.WEIGHT);
+                if(cbReps.isChecked())
+                    inputs.add(Exercise.Input.REPS);
+                if(cbTime.isChecked())
+                    inputs.add(Exercise.Input.TIME);
+                if(cbDistance.isChecked())
+                    inputs.add(Exercise.Input.DISTANCE);
+                if(inputs.size() == 0) {
+                    Toast.makeText(WorkoutForm.this, "Cannot add exercise with no inputs", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                exerciseAdapter.addExercise(exerciseName, inputs);
                 newExerciseName.setText("");
                 View view = WorkoutForm.this.getCurrentFocus();
                 if (view != null) {
@@ -102,7 +135,7 @@ public class WorkoutForm extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_finish:
-                dbAccessor.finishWorkout(sets, date);
+                dbAccessor.finishWorkout(exercises, sets, date);
                 finish();
             default:
                 return super.onOptionsItemSelected(item);

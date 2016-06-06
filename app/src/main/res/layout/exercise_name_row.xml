@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ExerciseName"
+        android:inputType="textMultiLine"
         android:textSize="30dp"
         android:id="@+id/tvExerciseName"
         android:layout_alignParentTop="true"

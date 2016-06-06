@@ -10,17 +10,33 @@
         android:layout_weight="0.3"
         android:text="Set"
         android:id="@+id/tvSetNumber" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.4"
         android:text="lbs"
         android:id="@+id/tvWeight" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.4"
         android:text="reps"
         android:id="@+id/tvReps" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:text="time"
+        android:id="@+id/tvTime" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:text="distance"
+        android:id="@+id/tvDistance" />
 
 </LinearLayout>
